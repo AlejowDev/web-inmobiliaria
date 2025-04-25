@@ -63,6 +63,7 @@ npm run dev
 # Corre el frontend
 cd ../frontend
 npm run dev
+```
 
 ## ☘ Devs
 
@@ -87,3 +88,4 @@ npm run dev
 │       ├── package-lock.json
 │       ├── package.json
 │       └── tsconfig.json
+```
