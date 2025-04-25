@@ -68,3 +68,22 @@ npm run dev
 
 - Miguel Andres
 - Alejandro Buritica
+
+## Estructura de Backend
+
+```bash
+
+├── backend/
+│   ├── generated/
+│   ├── node_modules/
+│   ├── prisma/
+│   └── src/
+│       ├── controllers/
+│       │   └── developer.controller.ts  # Posible archivo TypeScript
+│       ├── routes/
+│       │   └── index.ts                 # Corregido "index.is" -> "index.ts"
+│       ├── env/
+│       ├── .gitignore
+│       ├── package-lock.json
+│       ├── package.json
+│       └── tsconfig.json
