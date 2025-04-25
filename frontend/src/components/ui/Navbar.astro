@@ -1,0 +1,82 @@
+---
+// src/components/ui/Navbar.astro
+---
+
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-30"
+  >
+    <!-- Logo -->
+    <a href="/">
+      <img src="/logo-nuevahome.png" alt="nuevahome" class="h-25" />
+    </a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex gap-8 items-center">
+      <a href="/conocenos" class="text-gray-700 hover:text-green-700 transition"
+        >Conócenos</a
+      >
+      <a href="/blog" class="text-gray-700 hover:text-green-700 transition"
+        >Blog</a
+      >
+      <a
+        href="/proyectos"
+        class="px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition"
+        >Ver proyectos</a
+      >
+    </div>
+
+    <!-- Mobile Menu Toggle (Checkbox Hack) -->
+    <div class="md:hidden">
+      <input id="menu-toggle" type="checkbox" class="hidden peer" />
+      <label for="menu-toggle" class="cursor-pointer">
+        <svg
+          class="w-6 h-6 text-gray-700"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </label>
+
+      <!-- Overlay -->
+      <label
+        for="menu-toggle"
+        class="fixed inset-0 bg-transparent backdrop-blur-md z-40 hidden peer-checked:block"
+      ></label>
+
+      <!-- Sidebar -->
+      <div
+        class="fixed top-0 right-0 w-[70vw] h-full bg-white z-50 shadow-lg transform translate-x-full peer-checked:translate-x-0 transition-transform duration-300 ease-in-out rounded-l-xl p-6 space-y-4"
+      >
+        <!-- Logo -->
+        <div class="flex justify-center items-center">
+          <a href="/">
+            <img src="/logo-nuevahome.png" alt="nuevahome" class="h-30" />
+          </a>
+        </div>
+        <hr class="my-4 border-gray-300" />
+
+        <a
+          href="/conocenos"
+          class="block text-gray-800 hover:text-green-700 transition text-center"
+          >Conócenos</a
+        >
+        <a
+          href="/blog"
+          class="block text-gray-800 hover:text-green-700 transition text-center">Blog</a
+        >
+        <a
+          href="/proyectos"
+          class="block mt-4 px-4 py-2 bg-green-500 text-white rounded-full text-center hover:bg-green-600 transition"
+          >Ver proyectos</a
+        >
+        <hr class="my-4 border-gray-300" />
+      </div>
+    </div>
+  </div>
+</nav>
