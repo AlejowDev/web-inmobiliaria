@@ -63,3 +63,8 @@ npm run dev
 # Corre el frontend
 cd ../frontend
 npm run dev
+
+## ☘ Devs
+
+- Miguel Andres
+- Alejandro Buritica
