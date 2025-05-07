@@ -14,107 +14,88 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id         Int        @id @default(autoincrement())
-  name       String
-  email      String     @unique
-  phone      String?
-  role       UserRole   @default(BUYER)
-  properties Property[]
-  projects   Project[]
-  createdAt  DateTime   @default(now())
-}
-
-model Property {
-  id           Int            @id @default(autoincrement())
-  title        String
-  description  String
-  price        Float
-  address      String
-  propertyType PropertyType
-  status       PropertyStatus @default(AVAILABLE)
-  images       Image[]
-  userId       Int
-  user         User           @relation(fields: [userId], references: [id])
-  projectId    Int?
-  project      Project?       @relation(fields: [projectId], references: [id])
-  cityId       Int
-  city         City           @relation(fields: [cityId], references: [id])
-  createdAt    DateTime       @default(now())
-}
-
-model Project {
-  id          Int        @id @default(autoincrement())
-  name        String
-  description String
-  address     String
-  developerId Int
-  developer   Developer  @relation(fields: [developerId], references: [id])
-  userId      Int
-  user        User       @relation(fields: [userId], references: [id])
-  properties  Property[]
-  cityId      Int
-  city        City       @relation(fields: [cityId], references: [id])
-  createdAt   DateTime   @default(now())
-}
-
-model Developer {
-  id        Int       @id @default(autoincrement())
-  name      String
-  website   String?
-  projects  Project[]
-  createdAt DateTime  @default(now())
-}
-
 model Country {
   id     Int     @id @default(autoincrement())
-  name   String  @unique
-  code   String  @unique // ISO 3166-1 alpha-2 code
+  name   String  @db.VarChar(100)
   states State[]
 }
 
 model State {
   id        Int     @id @default(autoincrement())
-  name      String
-  code      String? // Optional state code
+  name      String  @db.VarChar(100)
   countryId Int
-  country   Country @relation(fields: [countryId], references: [id])
+  Country   Country @relation(fields: [countryId], references: [id], onDelete: NoAction)
   cities    City[]
+
+  @@index([countryId])
 }
 
 model City {
-  id         Int        @id @default(autoincrement())
-  name       String
-  stateId    Int
-  state      State      @relation(fields: [stateId], references: [id])
-  properties Property[]
-  projects   Project[]
+  id       Int       @id @default(autoincrement())
+  name     String    @db.VarChar(100)
+  stateId  Int
+  State    State     @relation(fields: [stateId], references: [id], onDelete: NoAction)
+  projects Project[]
+
+  @@index([stateId])
 }
 
-model Image {
-  id         Int      @id @default(autoincrement())
-  url        String
-  propertyId Int
-  property   Property @relation(fields: [propertyId], references: [id])
+model ProjectType {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique @db.VarChar(100) // e.g., "Apartment", "House"
+  projects Project[]
 }
 
-enum UserRole {
-  BUYER
-  SELLER
-  ADMIN
+model Project {
+  id            Int      @id @default(autoincrement())
+  title         String   @db.VarChar(255)
+  description   String?  @db.Text
+  cityId        Int
+  projectTypeId Int
+  createdAt     DateTime @default(now()) @db.Timestamp(0)
+
+  City         City          @relation(fields: [cityId], references: [id], onDelete: NoAction)
+  ProjectType  ProjectType   @relation(fields: [projectTypeId], references: [id], onDelete: NoAction)
+  UnitVariants UnitVariant[]
+
+  @@index([cityId])
+  @@index([projectTypeId])
 }
 
-enum PropertyType {
-  APARTMENT
-  HOUSE
-  LAND
-  OFFICE
-  COMMERCIAL
+model UnitVariant {
+  id        Int     @id @default(autoincrement())
+  projectId Int
+  area      Float // square meters
+  bedrooms  Int
+  bathrooms Int
+  parking   Int
+  priceFrom Float
+  available Boolean @default(true)
+
+  Project Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  Views   ClientView[]
+
+  @@index([projectId])
 }
 
-enum PropertyStatus {
-  AVAILABLE
-  SOLD
-  UNDER_CONSTRUCTION
-  RESERVED
+model Client {
+  id       Int     @id @default(autoincrement())
+  fullName String  @db.VarChar(255)
+  email    String  @db.VarChar(255)
+  phone    String? @db.VarChar(50)
+
+  views ClientView[]
+}
+
+model ClientView {
+  id            Int      @id @default(autoincrement())
+  clientId      Int
+  unitVariantId Int
+  viewedAt      DateTime @default(now()) @db.Timestamp(0)
+
+  Client      Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  UnitVariant UnitVariant @relation(fields: [unitVariantId], references: [id], onDelete: Cascade)
+
+  @@index([clientId])
+  @@index([unitVariantId])
 }
