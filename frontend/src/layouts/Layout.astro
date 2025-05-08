@@ -6,7 +6,7 @@ const {
 } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -24,14 +24,26 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://nuevahome.com/logo-nuevahome.png" />
+    <meta
+      property="og:image"
+      content="https://nuevahome.com/logo-nuevahome.png"
+    />
     <meta property="og:url" content="https://nuevahome.com" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://nuevahome.com/logo-nuevahome.png" />
+    <meta
+      name="twitter:image"
+      content="https://nuevahome.com/logo-nuevahome.png"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100..900&family=Orbitron:wght@400..900&family=Outfit:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>

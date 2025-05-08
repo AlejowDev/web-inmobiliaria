@@ -1,1 +1,19 @@
 @import "tailwindcss";
+@font-face {
+    font-family: 'Cocomat Pro';
+    src: url('/fonts/Cocomat\ Light-trial.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Cocomat Pro';
+    src: url('/fonts/Cocomat\ Ultralight-trial.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+  body {
+    font-family: 'Outfit', sans-serif;
+  }  

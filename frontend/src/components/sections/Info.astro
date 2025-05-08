@@ -1,0 +1,117 @@
+---
+import rawProyectoImg from "../../assets/img/proyecto.jpg";
+
+const defaultProyectoSrc =
+  typeof rawProyectoImg === "object" && rawProyectoImg?.src
+    ? rawProyectoImg.src
+    : rawProyectoImg;
+
+const {
+  numero = 1,
+  titulo = "Explora",
+  descripcion = "Cientos de proyectos de desarrolladores verificados. Vivienda nueva confiable, rentable, y que te va a enamorar.",
+  precio = "$268.104.673",
+  habitaciones = 2,
+  imagen = { src: defaultProyectoSrc, alt: "Imagen del proyecto inmobiliario" },
+} = Astro.props;
+
+const imgSrc = typeof imagen === "string" ? imagen : imagen.src;
+const imgAlt =
+  typeof imagen === "string"
+    ? "Vista del proyecto"
+    : (imagen.alt ?? "Vista del proyecto");
+---
+
+<!-- Sección 1 -->
+<div class="relative mt-5 bg-white rounded-3xl shadow-md p-6 pt-16 flex flex-col md:flex-row items-start gap-6 max-w-5xl mx-auto">
+    <div class="absolute -top-4 left-6 w-14 h-14 z-10">
+      <svg viewBox="0 0 20 20" fill="#4F89B6" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rotate-180">
+        <path d="M12 0L18 6V12H6V6L12 0Z" />
+      </svg>
+    </div>
+  
+    <div class="flex-1 space-y-3">
+      <div class="text-[#4F89B6] text-5xl font-bold">1</div>
+      <h2 class="text-2xl font-semibold text-[#003F5E]">Explora proyectos verificados y encuentra el lugar ideal</h2>
+      <p class="text-gray-700">
+        Descubre cientos de desarrollos certificados que combinan calidad, ubicación estratégica y precios competitivos. 
+        Vive la experiencia de elegir con confianza y enamórate de tu próximo hogar.
+      </p>
+    </div>
+  
+    <div class="relative w-full md:w-[42%] max-w-md">
+      <img src={imgSrc} alt={imgAlt} class="rounded w-full h-[300px] object-cover" />
+      <div class="absolute top-3 right-3 bg-[#4F89B6] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 text-sm shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="white" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16M4 14h16M10 6h4M6 18h12" />
+        </svg>
+        {habitaciones}
+      </div>
+      <div class="absolute -bottom-5 left-4 bg-white px-5 py-2 rounded-xl shadow-lg text-[#4F89B6] font-bold text-lg border border-[#4F89B6]">
+        {precio}
+      </div>
+    </div>
+  </div>
+  
+<!-- Sección 2 -->
+<div class="relative mt-5 bg-white rounded-3xl shadow-md p-6 pt-16 flex flex-col md:flex-row items-start gap-6 max-w-5xl mx-auto">
+    <div class="absolute -top-4 left-6 w-14 h-14 z-10">
+      <svg viewBox="0 0 20 20" fill="#4F89B6" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rotate-180">
+        <path d="M12 0L18 6V12H6V6L12 0Z" />
+      </svg>
+    </div>
+  
+    <div class="flex-1 space-y-3">
+      <div class="text-[#4F89B6] text-5xl font-bold">2</div>
+      <h2 class="text-2xl font-semibold text-[#003F5E]">Compara opciones y toma decisiones inteligentes</h2>
+      <p class="text-gray-700">
+        Accede a información clara y comparativa para evaluar proyectos según tus necesidades. 
+        Con nuestra guía experta, tomar la mejor decisión será fácil, rápida y segura.
+      </p>
+    </div>
+  
+    <div class="relative w-full md:w-[42%] max-w-md">
+      <img src={imgSrc} alt={imgAlt} class="rounded w-full h-[300px] object-cover" />
+      <div class="absolute top-3 right-3 bg-[#4F89B6] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 text-sm shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="white" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16M4 14h16M10 6h4M6 18h12" />
+        </svg>
+        {habitaciones}
+      </div>
+      <div class="absolute -bottom-5 left-4 bg-white px-5 py-2 rounded-xl shadow-lg text-[#4F89B6] font-bold text-lg border border-[#4F89B6]">
+        {precio}
+      </div>
+    </div>
+  </div>
+  
+<!-- Sección 3 -->
+<div class="relative bg-white rounded-3xl shadow-md p-6 pt-16 flex flex-col md:flex-row items-start gap-6 max-w-5xl mx-auto mt-5">
+    <div class="absolute -top-4 left-6 w-14 h-14 z-10">
+      <svg viewBox="0 0 20 20" fill="#4F89B6" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rotate-180">
+        <path d="M12 0L18 6V12H6V6L12 0Z" />
+      </svg>
+    </div>
+  
+    <div class="flex-1 space-y-3">
+      <div class="text-[#4F89B6] text-5xl font-bold">3</div>
+      <h2 class="text-2xl font-semibold text-[#003F5E]">Concreta tu inversión con confianza y respaldo</h2>
+      <p class="text-gray-700">
+        Nuestro equipo te acompaña desde la selección hasta el cierre del negocio. 
+        Gestionamos cada paso contigo para que invertir en vivienda sea tan fácil como emocionante.
+      </p>
+    </div>
+  
+    <div class="relative w-full md:w-[42%] max-w-md">
+      <img src={imgSrc} alt={imgAlt} class="rounded w-full h-[300px] object-cover" />
+      <div class="absolute top-3 right-3 bg-[#4F89B6] text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 text-sm shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="white" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16M4 14h16M10 6h4M6 18h12" />
+        </svg>
+        {habitaciones}
+      </div>
+      <div class="absolute -bottom-5 left-4 bg-white px-5 py-2 rounded-xl shadow-lg text-[#4F89B6] font-bold text-lg border border-[#4F89B6]">
+        {precio}
+      </div>
+    </div>
+  </div>
+  
