@@ -162,16 +162,27 @@ exports.Prisma.UnitVariantScalarFieldEnum = {
   available: 'available'
 };
 
-exports.Prisma.ClientScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  fullName: 'fullName',
   email: 'email',
-  phone: 'phone'
+  password: 'password',
+  fullName: 'fullName',
+  phone: 'phone',
+  roleId: 'roleId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  refreshToken: 'refreshToken'
+};
+
+exports.Prisma.RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
 };
 
 exports.Prisma.ClientViewScalarFieldEnum = {
   id: 'id',
-  clientId: 'clientId',
+  userId: 'userId',
   unitVariantId: 'unitVariantId',
   viewedAt: 'viewedAt'
 };
@@ -207,10 +218,17 @@ exports.Prisma.ProjectOrderByRelevanceFieldEnum = {
   description: 'description'
 };
 
-exports.Prisma.ClientOrderByRelevanceFieldEnum = {
-  fullName: 'fullName',
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
   email: 'email',
-  phone: 'phone'
+  password: 'password',
+  fullName: 'fullName',
+  phone: 'phone',
+  refreshToken: 'refreshToken'
+};
+
+exports.Prisma.RoleOrderByRelevanceFieldEnum = {
+  name: 'name',
+  description: 'description'
 };
 
 
@@ -221,7 +239,8 @@ exports.Prisma.ModelName = {
   ProjectType: 'ProjectType',
   Project: 'Project',
   UnitVariant: 'UnitVariant',
-  Client: 'Client',
+  User: 'User',
+  Role: 'Role',
   ClientView: 'ClientView'
 };
 

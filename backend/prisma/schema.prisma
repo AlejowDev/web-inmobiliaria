@@ -16,7 +16,7 @@ datasource db {
 
 model Country {
   id     Int     @id @default(autoincrement())
-  name   String  @db.VarChar(100)
+  name   String  @unique @db.VarChar(100)
   states State[]
 }
 
@@ -78,25 +78,43 @@ model UnitVariant {
   @@index([projectId])
 }
 
-model Client {
-  id       Int     @id @default(autoincrement())
-  fullName String  @db.VarChar(255)
-  email    String  @db.VarChar(255)
-  phone    String? @db.VarChar(50)
+model User {
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  password    String
+  fullName    String       @db.VarChar(255)
+  phone       String?      @db.VarChar(50)
+  roleId      Int          @default(1) // Valor por defecto para USER
+  role        Role         @relation(fields: [roleId], references: [id])
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  refreshToken String?
+  views       ClientView[]
 
-  views    ClientView[]
+  @@map("users") // Opcional: para mantener el nombre de tabla en plural
 }
 
+model Role {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  description String?
+  users       User[]
+
+  @@map("roles")
+}
+
+
+// El resto de modelos permanecen igual
 model ClientView {
   id            Int         @id @default(autoincrement())
-  clientId      Int
+  userId        Int
   unitVariantId Int
   viewedAt      DateTime    @default(now()) @db.Timestamp(0)
 
-  Client        Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  User          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   UnitVariant   UnitVariant @relation(fields: [unitVariantId], references: [id], onDelete: Cascade)
 
-  @@index([clientId])
+  @@index([userId])
   @@index([unitVariantId])
 }
 
